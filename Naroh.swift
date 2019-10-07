@@ -132,4 +132,15 @@ if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB"){
 airports["Cul"] = "Culiacan Airport"
 airports["YYZ"] = nil
 
+//Iterar en un diccionario
+for code in airports.keys{
+  print("\(code)")
+  
+}
 
+for v in airports.values{
+  print(v)
+  
+}
+
+if let oldValue
