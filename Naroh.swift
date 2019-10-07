@@ -144,3 +144,64 @@ for v in airports.values{
 }
 
 if let oldValue
+
+
+//Optionals
+let possibleNumber = "123"
+let convertedNumber = (Int(posibleNumber))
+let possibleNumber1 = "123a"
+let convertedNumber1 = Int(posibleNumber1)
+
+var possibleNumber2 = 123
+posibleNumber2 = nil //un int no puede ser nil
+
+var possibleNumber3: Int? = 123
+possibleNumber3 = nil
+var surveyAnswer1: String
+var surveyAnswer: String?
+
+var possibleNumber = "X"
+if let actualNumber = Int(possibleNumber){
+  print("possibleNumber es un entero")
+}else{
+  print("possibleNumber No es un entero")
+}
+
+ // Unpack
+var opt:Int? = 1
+opt == nil
+opt + 2 //error
+opt! + 2 //unwrap
+opt = nil
+opt! //fatal error checar si hay un nil antes de ahcer unwrap
+var opt1 : Int! = 2
+opt1 + 3 // ok. el unwrap o hace automatico
+opt1!
+
+ //Coalescing
+1 ?? 2
+nil ?? 2
+var costs = ["Milk":1,"Eggs":2,"Coffee":3]
+costs ["Coffee"] ?? 0
+costs ["Sugar"] ?? 0
+
+ // case fallthrough
+var integerToDescribe = 5
+var description = "The number \(integerToDescribe) is"
+print(description)
+
+switch integerToDescribe {
+case 2,3,5,7,11,13,17,19:
+  description = " a prime and also"
+  print(description)
+  
+  fallthrough
+
+/*case 0:
+  description = "0"
+  print(description)*/
+  
+default: "an integer"
+  print(description)
+  
+}
