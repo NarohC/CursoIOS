@@ -92,8 +92,44 @@ if arregloVacio.isEmpty {
     print("arreglo tiene datos")
 }
 
+  //Acceder a una celda que no existe
+arregloVacio[3]
+  //Otras formas de manipular contenido de un arreglo
+arregloVacio.append("See you")
+arregloVacio.insert("Hasta la vista Baby", at:1)
+arregloVacio[1...2] = ["N/A", "Unknown"]
+arregloVacio.remove(at:1)
 
+for it in arregloVacio{
+  print(it)
+}
 
+ //Set
+var letters = Set<Character>()
+letters.insert("a")
+var favoritesGenres: Set<String> = ["Rock", "Classical", "Hip-Hop"]
+favoritesGenres.insert("New Age")
+favoritesGenres.insert("Rock")
+print("Numero de elementes de set \(favoritesGenres.count)")
+print("Vacio el Set ? \(favoritesGenres.isEmpty)")
+favoritesGenres.sorted()
+print("Buscar New Age en Set \(favoritesGenres.contains("New Age"))")
+ //Union
+let a: Set = [1,3,5,7,9]
+let b: Set = [0,2,4,6,8]
+print(a.union(b))
+print(a.intersection(b))
+print(a.subtracting(b))
 
+ //Dictionaries
+var airports = ["YYZ":"Toronto Pearston", "DUB":"Dublin",]
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB"){
+  print("El valor anterior al update es: \(oldValue)")
+}else{
+  print("No se econtro la llave en el diccionario")
+}
+
+airports["Cul"] = "Culiacan Airport"
+airports["YYZ"] = nil
 
 
