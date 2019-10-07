@@ -51,6 +51,47 @@ let z = (404, "Not Found", "Found")
 let(statusCode, statusMessage) = http404error
 print("El codigo de status es \(statusCode)")
 print("El codigo de status es \(http404error.0)")
+let http200Status = (statusC: 0, descriptionC: "OK")
+print("El codigo de status es: \(http200Status.statusC)")
+let (statusCode,_) = http404error
+
+// Coleciones
+  //Array
+var shopping = ["Milk","Eggs","Coffee"]
+  //Dictionary
+var costs = ["Milk":1,"Eggs":2,"Coffee":3]
+  //Leer datos
+shopping[0]
+costs["Milk"]
+shopping += ["Smithy"]
+  //Otras fromas de crear arreglos vacios
+var arregloVacio = [String]()
+var diccionarioVacio = [String:Float]()
+let emptyDic:Dictionary<Int,String> = [:]
+let threeDoubles = Array(repeating: 0.0, count:3)//arreglo que guarda 0 3 veces
+
+arregloVacio.append("Hola")
+arregloVacio += ["Bye"]
+arregloVacio
+
+diccionarioVacio["Dic1"] = 23.45
+diccionarioVacio
+diccionarioVacio["Ene1"] = 233.45
+diccionarioVacio
+diccionarioVacio["Ene1"] = 233.45
+
+ //Iterar
+for (code,name) in diccionarioVacio{
+    print("\(code) : \(name)")
+}
+
+ //Checar si arreglo esta vacio
+if arregloVacio.isEmpty {
+    print("arreglo vacio")
+}else {
+    print("arreglo tiene datos")
+}
+
 
 
 
