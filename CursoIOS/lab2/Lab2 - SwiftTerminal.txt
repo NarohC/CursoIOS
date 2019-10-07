@@ -1,0 +1,146 @@
+--------------------
+Lab2 - Ejecutar codigo Swift usando terminal
+--------------------
+
+0) En caso de tener varias versiones de Xcode instaladas, seleccionar el Swift a usar, por ejemplo, puede ser el Swift 5.0.1 dentro del Xcode 10.3 o Swift 4.2 dentro Xcode 10.0.
+   Para cambiar la version de Swift a usar en linea de comando considerar los pasos de Lab0 - Setup.txt
+   - Abrir una terminal y ejecutar los siguientes comandos:
+   		$ swift -version
+       	Apple Swift version 4.2 (swiftlang-1000.11.37.1 clang-1000.11.45.1)
+       	Target: x86_64-apple-darwin18.7.0
+
+   - Para trabajar Swift en modo interactivo:
+   		$ swift
+   		1> let numbers = (1 ... 100)
+   		2> let result = numbers.reduce(0, +) // combine to return a single value
+   		3> print(result) //5050
+
+   - Guardemos el contenido de este codigo en un archivo
+   		$ vi Sum.swift
+   			let numbers = (1 ... 100)
+   		    let result = numbers.reduce(0, +) // combine to return a single value
+   		    print(result) //5050
+   		$ swift Sum.swift
+
+   - Otra forma de invocacion de este codigo sin hacer referencia a swift en la linea de comando es la siguiente:
+   		- Crear archivo Sum1.swift y agregarle el siguiente codigo:
+   		    #!/usr/bin/env swift 
+   			let numbers = (1 ... 100)
+   		    let result = numbers.reduce(0, +) // combine to return a single value
+   		    print(result) //5050
+
+   		- Hacer ejecutable el archivo
+   		$ chmod +x Sum1.swift
+   		- Ejecutarlo de la siguiente manera:
+   		$ ./Sum1.swift
+
+
+1) Es posible ejecutar en linea de comandos con argumentos
+		$ vi Sum2.swift
+			 #!/usr/bin/env swift 
+   			 let numbers = (1 ... Int(CommandLine.arguments[1])!)
+   		     let result = numbers.reduce(0, +) // combine to return a single value
+   		     print(result) //5050
+
+   		$ chmod +x Sum2.swift
+   		$ ./Sum2.swift 10
+
+2) Para compilar el codigo realizar los siguientes pasos:
+		$ swiftc Sum2.swift
+		$ ls
+
+		  ...
+		  Sum2
+		  ...
+
+		$ ./Sum2 10
+
+3) Ejecutaremos el siguiente codigo de manera interactiva
+		$ swift
+		1> var contador: Int
+		   error: repl.swift:1:1: error: variables currently must have an initial value
+		1> var contador: Int = 1 // contador: Int = 1
+		2> print(contador) // 1 
+		3> var total: Int?   // Esto es un Optional, total: Int? = nil
+		4> print(total) // nil
+		5> total = 3500 
+		6> print(total) // Optional(3500)
+		7> // Cuando son optional hay que hacer unwrapping para extraer el contenido
+		8> // El unwrap es con el operador !
+		9> print(total!) //3500
+
+
+4) Para probar funcionalidades de control de acceso en Swift es importante organizar el codigo en multiples archivos, por lo que realizaremos lo siguiente:
+		$ vi Maths.swift
+		  class Maths {
+		    let a: Int!
+		    let b: Int!
+		    // ? is a optional 
+		    // private var result: Int? = nil, is the same as code below
+		    private var result: Int?
+		    //var result: Int? 
+		    
+		    init(a: Int,b: Int) {
+		        self.a = a
+		        self.b = b
+		    }
+		    
+		    func add() {
+		        result = a + b
+		    }
+		    
+		    func displayResult() {
+		        print("Result: " + String(describing: result))
+		    }
+		}
+
+		$ vi main.swift
+		let calculation = Maths(a: 2, b: 3)
+		calculation.add()
+		calculation.displayResult()
+        print(String(describing: calculation.result))
+
+      - Con los dos archivos ya creados, ahora realizar la compilacion de ambos usando el siguiente comando:
+
+      	$ swiftc -o Math main.swift Maths.swift
+
+      	NOTA: -o Define el archivo compilado a la salida
+        NOTA: Es importante que el archivo que posee el codigo cliente se llame main.swift
+
+      - Al momento de compilar, marca el siguiente error:
+      	main.swift:4:38: error: 'result' is inaccessible due to 'private' protection level
+
+      - Modificar el codigo de Maths.swift para que la variable result tenga un modificador de acceso Internal que es el default (can be used only within any source files from their defining module, but not in any source file outside of that module)
+         class Maths {
+		    let a: Int!
+		    let b: Int!
+		    // ? is a optional 
+		    // private var result: Int? = nil, is the same as code below
+		    //private var result: Int?
+		    var result: Int? 
+
+		    ...
+
+	  - Compilar nuevamente el codigo
+	    $ swiftc -o Math main.swift Maths.swift
+	  - Ya no marca error de compilacion
+	    $ ls
+	      ..
+	      Math
+	      ..
+	  - Ejecutar
+	    $./Math
+	    	Result: Optional(5)
+			Optional(5)
+
+	  - Modificar el codigo para que realize el unwrap al momento de desplegar el contenido de result y ejecutar el programa nuevamente, el resultado debe desplegar
+	  	Result: 5
+		5
+
+
+
+
+
+
+
+
